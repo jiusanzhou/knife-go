@@ -17,11 +17,11 @@
  */
 
 /*
-Package knifego is a collections of effective libraries for golang.
+Package convert is collections method to convert types.
+
+Now we supported types:
+- string <-> bytes
 
 
-The way to use is simply, just import the package you want.
-
-For a full guide visit https://github.com/jiusanzhou/knife-go
 */
-package knifego
+package convert
