@@ -84,6 +84,40 @@ func TestByteBufferWriteTo(t *testing.T) {
 	}
 }
 
+func TestByteBuffer_Set(t *testing.T) {
+	for i := 0; i < 10; i++ {
+		expectedS := fmt.Sprintf("num %d", i)
+		b := ByteBufferGet()
+		b.Set([]byte(expectedS))
+		if string(b.B) != expectedS {
+			t.Fatalf("unexpected result: %q. Expecting %q", b.B, expectedS)
+		}
+		ByteBufferPut(b)
+	}
+}
+
+func TestByteBuffer_Bytes(t *testing.T) {
+
+	var expectedB = []byte("......")
+	for i := 0; i < 10; i++ {
+		b := ByteBufferGet()
+		b.Set(expectedB)
+		if !bytes.Equal(b.Bytes(), expectedB) {
+			t.Fatalf("unexpected result: %q. Expecting %q", b.B, expectedB)
+		}
+		b.Bytes()
+		ByteBufferPut(b)
+	}
+}
+
+func TestByteBuffer_Write(t *testing.T) {
+
+}
+
+func TestByteBuffer_WriteByte(t *testing.T) {
+
+}
+
 func TestByteBufferGetPutSerial(t *testing.T) {
 	testByteBufferGetPut(t)
 }
