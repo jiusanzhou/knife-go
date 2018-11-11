@@ -52,6 +52,10 @@ test:
 	@echo "Running unit tests"
 	@go test -tags kqueue ./...
 
+bench:
+	@echo "Running bench"
+	@go test -bench=. -benchmem -benchtime=5s ./...
+
 coverage:
 	@echo "Running all coverage for knife-go"
 	@(env bash $(PWD)/go-coverage.sh)

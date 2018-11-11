@@ -32,9 +32,13 @@ func TestString2Bytes(t *testing.T) {
 }
 
 func BenchmarkBytes2String(b *testing.B) {
-
+	for i := 0; i < b.N; i++ {
+		Bytes2String(materials[3].bys)
+	}
 }
 
 func BenchmarkString2Bytes(b *testing.B) {
-
+	for i := 0; i < b.N; i++ {
+		String2Bytes(materials[3].str)
+	}
 }
