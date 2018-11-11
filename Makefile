@@ -78,6 +78,7 @@ pkg-list:
 clean:
 	@echo "Cleaning up all the generated files"
 	@find . -name '*.test' | xargs rm -fv
+	@rm coverage.txt
 	@rm -rvf build
 	@rm -rvf release
 
