@@ -18,8 +18,6 @@
 
 package pool
 
-
-
 import "io"
 
 // Origin code from: https://github.com/valyala/bytebufferpool
@@ -131,4 +129,3 @@ func (b *ByteBuffer) String() string {
 func (b *ByteBuffer) Reset() {
 	b.B = b.B[:0]
 }
-
