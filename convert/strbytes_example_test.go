@@ -20,6 +20,7 @@ package convert_test
 
 import (
 	"fmt"
+
 	"github.com/jiusanzhou/knife-go/convert"
 )
 
