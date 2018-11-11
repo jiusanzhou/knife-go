@@ -12,7 +12,7 @@ getdeps:
 	@echo "Installing vendorcheck" && go get -u github.com/FiloSottile/vendorcheck
 	@echo "Installing gometalinter" && go get -u github.com/alecthomas/gometalinter
 
-verifiers: lint cyclo deadcode spelling
+verifiers: lint cyclo deadcode spelling metalinter
 
 vet:
 	@echo "Running $@"
@@ -51,6 +51,10 @@ check: verifiers test
 test:
 	@echo "Running unit tests"
 	@go test -tags kqueue ./...
+
+bench:
+	@echo "Running bench"
+	@go test -bench=. -benchmem -benchtime=5s ./...
 
 coverage:
 	@echo "Running all coverage for knife-go"
