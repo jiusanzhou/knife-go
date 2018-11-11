@@ -12,7 +12,7 @@ getdeps:
 	@echo "Installing vendorcheck" && go get -u github.com/FiloSottile/vendorcheck
 	@echo "Installing gometalinter" && go get -u github.com/alecthomas/gometalinter
 
-verifiers: lint cyclo deadcode spelling metalinter
+verifiers: lint cyclo deadcode spelling
 
 vet:
 	@echo "Running $@"
@@ -21,6 +21,7 @@ vet:
 
 fmt:
 	@echo "Running $@"
+	@${GOPATH}/bin/golint .
 
 lint:
 	@echo "Running $@"
@@ -40,7 +41,7 @@ cyclo:
 
 deadcode:
 	@echo "Running $@"
-	@${GOPATH}/bin/deadcode -test $(shell go list ./...) || true
+	@${GOPATH}/bin/deadcode . || true
 
 spelling:
 	@${GOPATH}/bin/misspell -locale US -error `find .`
