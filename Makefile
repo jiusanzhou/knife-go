@@ -12,7 +12,7 @@ getdeps:
 	@echo "Installing vendorcheck" && go get -u github.com/FiloSottile/vendorcheck
 	@echo "Installing gometalinter" && go get -u github.com/alecthomas/gometalinter
 
-verifiers: lint cyclo deadcode spelling
+verifiers: lint cyclo deadcode spelling metalinter
 
 vet:
 	@echo "Running $@"
