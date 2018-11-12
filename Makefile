@@ -1,6 +1,8 @@
 PWD := $(shell pwd)
 GOPATH := $(shell go env GOPATH)
 
+TEST_FLAGS := "-mod=vendor"
+
 default: help
 
 getdeps:
@@ -31,7 +33,7 @@ check: verifiers test
 
 test:
 	@echo "Running unit tests"
-	@go test -tags kqueue ./...
+	@go test -v $(TEST_FLAGS) -tags kqueue ./...
 
 bench:
 	@echo "Running bench"
