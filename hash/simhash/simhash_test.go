@@ -1,8 +1,8 @@
 package simhash
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestSimhash(t *testing.T) {
