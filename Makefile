@@ -6,13 +6,10 @@ default: help
 getdeps:
 	@echo "Installing golint" && go get -u golang.org/x/lint/golint
 	@echo "Installing gocyclo" && go get -u github.com/fzipp/gocyclo
-	@echo "Installing deadcode" && go get -u github.com/remyoudompheng/go-misc/deadcode
-	@echo "Installing misspell" && go get -u github.com/client9/misspell/cmd/misspell
-	@echo "Installing ineffassign" && go get -u github.com/gordonklaus/ineffassign
 	@echo "Installing vendorcheck" && go get -u github.com/FiloSottile/vendorcheck
 	@echo "Installing gometalinter" && go get -u github.com/alecthomas/gometalinter
 
-verifiers: lint cyclo deadcode spelling metalinter
+verifiers: lint cyclo metalinter
 
 vet:
 	@echo "Running $@"
@@ -29,7 +26,13 @@ lint:
 
 metalinter:
 	@${GOPATH}/bin/gometalinter --install
-	@${GOPATH}/bin/gometalinter --disable-all -E vet -E gofmt -E misspell -E ineffassign -E goimports -E deadcode --tests --vendor ./...
+	@${GOPATH}/bin/gometalinter --disable-all \
+		-E vet \
+		-E gofmt \
+		-E misspell \
+		-E ineffassign \
+		-E goimports \
+		-E deadcode --tests --vendor ./...
 
 ineffassign:
 	@echo "Running $@"
