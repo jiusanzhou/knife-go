@@ -1,23 +1,15 @@
 PWD := $(shell pwd)
 GOPATH := $(shell go env GOPATH)
 
+TEST_FLAGS := "-mod=vendor"
+
 default: help
 
 getdeps:
 	@echo "Installing golint" && go get -u golang.org/x/lint/golint
-	@echo "Installing gocyclo" && go get -u github.com/fzipp/gocyclo
-	@echo "Installing deadcode" && go get -u github.com/remyoudompheng/go-misc/deadcode
-	@echo "Installing misspell" && go get -u github.com/client9/misspell/cmd/misspell
-	@echo "Installing ineffassign" && go get -u github.com/gordonklaus/ineffassign
-	@echo "Installing vendorcheck" && go get -u github.com/FiloSottile/vendorcheck
 	@echo "Installing gometalinter" && go get -u github.com/alecthomas/gometalinter
 
-verifiers: lint cyclo deadcode spelling metalinter
-
-vet:
-	@echo "Running $@"
-	@go tool vet -atomic -bool -copylocks -nilfunc -printf -shadow -rangeloops -unreachable -unsafeptr -unusedresult cmd
-	@go tool vet -atomic -bool -copylocks -nilfunc -printf -shadow -rangeloops -unreachable -unsafeptr -unusedresult pkg
+verifiers: lint metalinter
 
 fmt:
 	@echo "Running $@"
@@ -29,28 +21,19 @@ lint:
 
 metalinter:
 	@${GOPATH}/bin/gometalinter --install
-	@${GOPATH}/bin/gometalinter --disable-all -E vet -E gofmt -E misspell -E ineffassign -E goimports -E deadcode --tests --vendor ./...
-
-ineffassign:
-	@echo "Running $@"
-	@${GOPATH}/bin/ineffassign .
-
-cyclo:
-	@echo "Running $@"
-	@${GOPATH}/bin/gocyclo -over 200 .
-
-deadcode:
-	@echo "Running $@"
-	@${GOPATH}/bin/deadcode . || true
-
-spelling:
-	@${GOPATH}/bin/misspell -locale US -error `find .`
+	@${GOPATH}/bin/gometalinter --disable-all \
+		-E vet \
+		-E gofmt \
+		-E misspell \
+		-E ineffassign \
+		-E goimports \
+		-E deadcode --tests --vendor ./...
 
 check: verifiers test
 
 test:
 	@echo "Running unit tests"
-	@go test -tags kqueue ./...
+	@go test -v $(TEST_FLAGS) -tags kqueue ./...
 
 bench:
 	@echo "Running bench"

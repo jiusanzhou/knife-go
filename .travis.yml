@@ -1,8 +1,7 @@
 language: go
 
 go:
-    - 1.x
-    - tip
+    - 1.11.x
 
 # this ensures PRs based on a local branch are not built twice
 # the downside is that a PR targeting a different branch is not built
@@ -10,6 +9,8 @@ go:
 branches:
   only:
     - master
+env:
+  - GO111MODULE=on
 
 matrix:
   allow_failures:
