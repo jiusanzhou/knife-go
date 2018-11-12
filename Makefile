@@ -5,16 +5,9 @@ default: help
 
 getdeps:
 	@echo "Installing golint" && go get -u golang.org/x/lint/golint
-	@echo "Installing gocyclo" && go get -u github.com/fzipp/gocyclo
-	@echo "Installing vendorcheck" && go get -u github.com/FiloSottile/vendorcheck
 	@echo "Installing gometalinter" && go get -u github.com/alecthomas/gometalinter
 
-verifiers: lint cyclo metalinter
-
-vet:
-	@echo "Running $@"
-	@go tool vet -atomic -bool -copylocks -nilfunc -printf -shadow -rangeloops -unreachable -unsafeptr -unusedresult cmd
-	@go tool vet -atomic -bool -copylocks -nilfunc -printf -shadow -rangeloops -unreachable -unsafeptr -unusedresult pkg
+verifiers: lint metalinter
 
 fmt:
 	@echo "Running $@"
@@ -33,21 +26,6 @@ metalinter:
 		-E ineffassign \
 		-E goimports \
 		-E deadcode --tests --vendor ./...
-
-ineffassign:
-	@echo "Running $@"
-	@${GOPATH}/bin/ineffassign .
-
-cyclo:
-	@echo "Running $@"
-	@${GOPATH}/bin/gocyclo -over 200 .
-
-deadcode:
-	@echo "Running $@"
-	@${GOPATH}/bin/deadcode . || true
-
-spelling:
-	@${GOPATH}/bin/misspell -locale US -error `find .`
 
 check: verifiers test
 
