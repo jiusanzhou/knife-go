@@ -1,6 +1,8 @@
 PWD := $(shell pwd)
 GOPATH := $(shell go env GOPATH)
 
+export GO111MODULE=on
+
 TEST_FLAGS := "-mod=vendor"
 
 default: help
