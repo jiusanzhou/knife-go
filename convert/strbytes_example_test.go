@@ -21,7 +21,7 @@ package convert_test
 import (
 	"fmt"
 
-	"github.com/jiusanzhou/knife-go/convert"
+	"go.zoe.im/knife-go/convert"
 )
 
 func ExampleBytes2String() {

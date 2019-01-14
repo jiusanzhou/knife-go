@@ -3,7 +3,7 @@ package simhash_test
 import (
 	"fmt"
 
-	"github.com/jiusanzhou/knife-go/hash/simhash"
+	"go.zoe.im/knife-go/hash/simhash"
 )
 
 func main() {

@@ -21,7 +21,7 @@ package pool_test
 import (
 	"fmt"
 
-	"github.com/jiusanzhou/knife-go/pool"
+	"go.zoe.im/knife-go/pool"
 )
 
 func ExampleByteBuffer() {

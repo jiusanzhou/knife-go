@@ -24,4 +24,5 @@ The way to use is simply, just import the package you want.
 
 For a full guide visit https://github.com/jiusanzhou/knife-go
 */
-package knifego
+
+package knifego // import "go.zoe.im/knife-go"

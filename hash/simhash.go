@@ -1,7 +1,7 @@
 package hash
 
 import (
-	"github.com/jiusanzhou/knife-go/hash/simhash"
+	"go.zoe.im/knife-go/hash/simhash"
 )
 
 var (

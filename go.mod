@@ -1,4 +1,4 @@
-module github.com/jiusanzhou/knife-go
+module go.zoe.im/knife-go
 
 require (
 	4d63.com/gochecknoglobals v0.0.0-20180908201037-5090db600a84 // indirect
